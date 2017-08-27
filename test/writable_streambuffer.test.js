@@ -134,18 +134,19 @@ describe('WritableStreamBuffer with a different limit', function() {
   });
 
   it('should throw an Error after the limit number of bytes were written', function() {
-    expect(this.buffer.write.bind(this.buffer, fixtures.simpleString)).to.throw(Error);
+    expect(this.buffer.write.bind(this.buffer, fixtures.simpleString)).to.throw(Error, 'Stream overflows the limit');
     expect(this.buffer.size()).to.equal(this.limit);
   });
 
   it('should throw an Error after the limit number of bytes were written in 2 chunks', function() {
     this.buffer.write(fixtures.simpleStringParts[0]);
-    expect(this.buffer.write.bind(this.buffer, fixtures.simpleStringParts[1])).to.throw(Error);
+    expect(this.buffer.write.bind(this.buffer, fixtures.simpleStringParts[1])).to.throw(Error, 'Stream overflows the limit');
     expect(this.buffer.size()).to.equal(this.limit);
   });
 
   it('should emit error event when the limit is surpassed', function(done) {
-    this.buffer.on('error', function() {
+    this.buffer.on('error', function(err) {
+      expect(err.message).to.be.equal('Stream overflows the limit');
       done();
     });
 
