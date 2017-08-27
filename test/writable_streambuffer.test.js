@@ -11,12 +11,13 @@ describe('WritableStreamBuffer with defaults', function() {
     this.buffer = new streamBuffer.WritableStreamBuffer();
   });
 
-  it('returns false on call to getContents() when empty', function() {
-    return expect(this.buffer.getContents()).to.be.false;
+  it('returns empty Buffer on call to getContents() when empty', function() {
+    const emptyBuffer = new Buffer('');
+    return expect(this.buffer.getContents()).to.be.deep.equal(emptyBuffer);
   });
 
-  it('returns false on call to getContentsAsString() when empty', function() {
-    return expect(this.buffer.getContentsAsString()).to.be.false;
+  it('returns empty string on call to getContentsAsString() when empty', function() {
+    return expect(this.buffer.getContentsAsString()).to.be.equal('');
   });
 
   it('backing buffer should be default size', function() {

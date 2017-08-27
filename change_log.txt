@@ -1,5 +1,9 @@
 This file contains the changes by version since the fork
 ========================================================
+v3.3.0
+    - API change: WritableStreamBuffer now returns empty Buffer or empty String when calling getContents() or
+      getContentsAsString() respectively. Old API was to return boolean false
+
 v3.2.0
     - Library uses some ES6 features
     - WritableStreamBuffer when overflowing the limit, if set, now throws BufferOverflowError
