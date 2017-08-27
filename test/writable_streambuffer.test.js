@@ -1,10 +1,10 @@
 'use strict';
 
-var expect = require('chai').expect;
-var fixtures = require('./fixtures');
-var streamBuffer = require('../lib/streambuffer');
-var stringStream = require('string-to-stream');
-var BufferOverflowError = require('../lib/errors').BufferOverflowError;
+const expect = require('chai').expect;
+const fixtures = require('./fixtures');
+const streamBuffer = require('../lib/streambuffer');
+const stringStream = require('string-to-stream');
+const BufferOverflowError = require('../lib/errors').BufferOverflowError;
 
 describe('WritableStreamBuffer with defaults', function() {
   beforeEach(function() {
@@ -41,7 +41,7 @@ describe('WritableStreamBuffer with defaults', function() {
     });
 
     it('returns partial contents correctly', function() {
-      var buf = Buffer.concat([
+      const buf = Buffer.concat([
         this.buffer.getContents(Math.floor(Buffer.byteLength(fixtures.simpleString) / 2)),
         this.buffer.getContents()
       ]);
@@ -151,7 +151,7 @@ describe('WritableStreamBuffer with a different limit', function() {
       done();
     });
 
-    var overflowingReadableStream = givenOverflowingReadableStream();
+    const overflowingReadableStream = givenOverflowingReadableStream();
     overflowingReadableStream.pipe(this.buffer);
   });
 
