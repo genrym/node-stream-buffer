@@ -49,7 +49,7 @@ describe('A default ReadableStreamBuffer', function() {
     });
 
     it('emits error event', function(done) {
-      this.buffer.on('error', function(err) {
+      this.buffer.on('error', function() {
         done();
       });
       this.buffer.read();
