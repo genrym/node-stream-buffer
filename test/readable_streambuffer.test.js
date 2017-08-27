@@ -1,8 +1,8 @@
 'use strict';
 
-var expect = require('chai').expect;
-var fixtures = require('./fixtures');
-var streamBuffer = require('../lib/streambuffer');
+const expect = require('chai').expect;
+const fixtures = require('./fixtures');
+const streamBuffer = require('../lib/streambuffer');
 
 describe('A default ReadableStreamBuffer', function() {
   beforeEach(function() {
@@ -64,8 +64,8 @@ describe('A default ReadableStreamBuffer', function() {
   });
 
   it('emits end event after data, when stopped', function(done) {
-    var that = this;
-    var str = '';
+    const that = this;
+    let str = '';
     this.buffer.on('readable', function() {
       str += (that.buffer.read() || new Buffer(0)).toString('utf8');
     });
@@ -79,7 +79,7 @@ describe('A default ReadableStreamBuffer', function() {
 
   describe('when writing binary data', function() {
     beforeEach(function(done) {
-      var that = this;
+      const that = this;
       this.buffer.put(fixtures.binaryData);
 
       this.buffer.once('readable', function() {
@@ -115,7 +115,7 @@ describe('A default ReadableStreamBuffer', function() {
 
 describe('A ReadableStreamBuffer using custom chunk size', function() {
   beforeEach(function(done) {
-    var that = this;
+    const that = this;
 
     this.buffer = new streamBuffer.ReadableStreamBuffer({
       chunkSize: 2
@@ -135,8 +135,8 @@ describe('A ReadableStreamBuffer using custom chunk size', function() {
 
 describe('A ReadableStreamBuffer using custom frequency', function() {
   beforeEach(function(done) {
-    var that = this;
-    var startTime = new Date().getTime();
+    const that = this;
+    const startTime = new Date().getTime();
 
     this.buffer = new streamBuffer.ReadableStreamBuffer({
       frequency: 300
@@ -159,10 +159,10 @@ describe('A ReadableStreamBuffer using custom frequency', function() {
 describe('A ReadableStreamBuffer constructor', function() {
 
   it('should throw an Error when supplying non-integer value for chunkSize option', function() {
-    var constrFloat = function() { new streamBuffer.ReadableStreamBuffer({chunkSize: 42.5}); };
-    var constrString = function() { new streamBuffer.ReadableStreamBuffer({chunkSize: 'some'}); };
-    var constrObject = function() { new streamBuffer.ReadableStreamBuffer({chunkSize: {}}); };
-    var constrFunction = function() { new streamBuffer.ReadableStreamBuffer({chunkSize: function() {}}); };
+    const constrFloat = function() { new streamBuffer.ReadableStreamBuffer({chunkSize: 42.5}); };
+    const constrString = function() { new streamBuffer.ReadableStreamBuffer({chunkSize: 'some'}); };
+    const constrObject = function() { new streamBuffer.ReadableStreamBuffer({chunkSize: {}}); };
+    const constrFunction = function() { new streamBuffer.ReadableStreamBuffer({chunkSize: function() {}}); };
     expect(constrFloat).to.throw(Error);
     expect(constrString).to.throw(Error);
     expect(constrObject).to.throw(Error);
@@ -170,10 +170,10 @@ describe('A ReadableStreamBuffer constructor', function() {
   });
 
   it('should throw an Error when supplying non-integer value for frequency option', function() {
-    var constrFloat = function() { new streamBuffer.ReadableStreamBuffer({frequency: 42.5}); };
-    var constrString = function() { new streamBuffer.ReadableStreamBuffer({frequency: 'some'}); };
-    var constrObject = function() { new streamBuffer.ReadableStreamBuffer({frequency: {}}); };
-    var constrFunction = function() { new streamBuffer.ReadableStreamBuffer({frequency: function() {}}); };
+    const constrFloat = function() { new streamBuffer.ReadableStreamBuffer({frequency: 42.5}); };
+    const constrString = function() { new streamBuffer.ReadableStreamBuffer({frequency: 'some'}); };
+    const constrObject = function() { new streamBuffer.ReadableStreamBuffer({frequency: {}}); };
+    const constrFunction = function() { new streamBuffer.ReadableStreamBuffer({frequency: function() {}}); };
     expect(constrFloat).to.throw(Error);
     expect(constrString).to.throw(Error);
     expect(constrObject).to.throw(Error);
@@ -181,10 +181,10 @@ describe('A ReadableStreamBuffer constructor', function() {
   });
 
   it('should throw an Error when supplying non-integer value for initialSize option', function() {
-    var constrFloat = function() { new streamBuffer.ReadableStreamBuffer({initialSize: 42.5}); };
-    var constrString = function() { new streamBuffer.ReadableStreamBuffer({initialSize: 'some'}); };
-    var constrObject = function() { new streamBuffer.ReadableStreamBuffer({initialSize: {}}); };
-    var constrFunction = function() { new streamBuffer.ReadableStreamBuffer({initialSize: function() {}}); };
+    const constrFloat = function() { new streamBuffer.ReadableStreamBuffer({initialSize: 42.5}); };
+    const constrString = function() { new streamBuffer.ReadableStreamBuffer({initialSize: 'some'}); };
+    const constrObject = function() { new streamBuffer.ReadableStreamBuffer({initialSize: {}}); };
+    const constrFunction = function() { new streamBuffer.ReadableStreamBuffer({initialSize: function() {}}); };
     expect(constrFloat).to.throw(Error);
     expect(constrString).to.throw(Error);
     expect(constrObject).to.throw(Error);
@@ -192,10 +192,10 @@ describe('A ReadableStreamBuffer constructor', function() {
   });
 
   it('should throw an Error when supplying non-integer value for incrementAmount option', function() {
-    var constrFloat = function() { new streamBuffer.ReadableStreamBuffer({incrementAmount: 42.5}); };
-    var constrString = function() { new streamBuffer.ReadableStreamBuffer({incrementAmount: 'some'}); };
-    var constrObject = function() { new streamBuffer.ReadableStreamBuffer({incrementAmount: {}}); };
-    var constrFunction = function() { new streamBuffer.ReadableStreamBuffer({incrementAmount: function() {}}); };
+    const constrFloat = function() { new streamBuffer.ReadableStreamBuffer({incrementAmount: 42.5}); };
+    const constrString = function() { new streamBuffer.ReadableStreamBuffer({incrementAmount: 'some'}); };
+    const constrObject = function() { new streamBuffer.ReadableStreamBuffer({incrementAmount: {}}); };
+    const constrFunction = function() { new streamBuffer.ReadableStreamBuffer({incrementAmount: function() {}}); };
     expect(constrFloat).to.throw(Error);
     expect(constrString).to.throw(Error);
     expect(constrObject).to.throw(Error);
