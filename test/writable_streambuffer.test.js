@@ -2,8 +2,9 @@
 
 var expect = require('chai').expect;
 var fixtures = require('./fixtures');
-var streamBuffer = require('../lib/streambuffer.js');
+var streamBuffer = require('../lib/streambuffer');
 var stringStream = require('string-to-stream');
+var BufferOverflowError = require('../lib/errors').BufferOverflowError;
 
 describe('WritableStreamBuffer with defaults', function() {
   beforeEach(function() {
@@ -134,19 +135,19 @@ describe('WritableStreamBuffer with a different limit', function() {
   });
 
   it('should throw an Error after the limit number of bytes were written', function() {
-    expect(this.buffer.write.bind(this.buffer, fixtures.simpleString)).to.throw(Error, 'Stream overflows the limit');
+    expect(this.buffer.write.bind(this.buffer, fixtures.simpleString)).to.throw(BufferOverflowError, 'Stream overflows the limit');
     expect(this.buffer.size()).to.equal(this.limit);
   });
 
   it('should throw an Error after the limit number of bytes were written in 2 chunks', function() {
     this.buffer.write(fixtures.simpleStringParts[0]);
-    expect(this.buffer.write.bind(this.buffer, fixtures.simpleStringParts[1])).to.throw(Error, 'Stream overflows the limit');
+    expect(this.buffer.write.bind(this.buffer, fixtures.simpleStringParts[1])).to.throw(BufferOverflowError, 'Stream overflows the limit');
     expect(this.buffer.size()).to.equal(this.limit);
   });
 
   it('should emit error event when the limit is surpassed', function(done) {
     this.buffer.on('error', function(err) {
-      expect(err.message).to.be.equal('Stream overflows the limit');
+      expect(err.name).to.be.equal(BufferOverflowError.name);
       done();
     });
 
