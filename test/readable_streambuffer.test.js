@@ -155,3 +155,51 @@ describe('A ReadableStreamBuffer using custom frequency', function() {
     expect(this.time).to.be.at.least(295);
   });
 });
+
+describe('A ReadableStreamBuffer constructor', function() {
+
+  it('should throw an Error when supplying non-integer value for chunkSize option', function() {
+    var constrFloat = function() { new streamBuffer.ReadableStreamBuffer({chunkSize: 42.5}); };
+    var constrString = function() { new streamBuffer.ReadableStreamBuffer({chunkSize: 'some'}); };
+    var constrObject = function() { new streamBuffer.ReadableStreamBuffer({chunkSize: {}}); };
+    var constrFunction = function() { new streamBuffer.ReadableStreamBuffer({chunkSize: function() {}}); };
+    expect(constrFloat).to.throw(Error);
+    expect(constrString).to.throw(Error);
+    expect(constrObject).to.throw(Error);
+    expect(constrFunction).to.throw(Error);
+  });
+
+  it('should throw an Error when supplying non-integer value for frequency option', function() {
+    var constrFloat = function() { new streamBuffer.ReadableStreamBuffer({frequency: 42.5}); };
+    var constrString = function() { new streamBuffer.ReadableStreamBuffer({frequency: 'some'}); };
+    var constrObject = function() { new streamBuffer.ReadableStreamBuffer({frequency: {}}); };
+    var constrFunction = function() { new streamBuffer.ReadableStreamBuffer({frequency: function() {}}); };
+    expect(constrFloat).to.throw(Error);
+    expect(constrString).to.throw(Error);
+    expect(constrObject).to.throw(Error);
+    expect(constrFunction).to.throw(Error);
+  });
+
+  it('should throw an Error when supplying non-integer value for initialSize option', function() {
+    var constrFloat = function() { new streamBuffer.ReadableStreamBuffer({initialSize: 42.5}); };
+    var constrString = function() { new streamBuffer.ReadableStreamBuffer({initialSize: 'some'}); };
+    var constrObject = function() { new streamBuffer.ReadableStreamBuffer({initialSize: {}}); };
+    var constrFunction = function() { new streamBuffer.ReadableStreamBuffer({initialSize: function() {}}); };
+    expect(constrFloat).to.throw(Error);
+    expect(constrString).to.throw(Error);
+    expect(constrObject).to.throw(Error);
+    expect(constrFunction).to.throw(Error);
+  });
+
+  it('should throw an Error when supplying non-integer value for incrementAmount option', function() {
+    var constrFloat = function() { new streamBuffer.ReadableStreamBuffer({incrementAmount: 42.5}); };
+    var constrString = function() { new streamBuffer.ReadableStreamBuffer({incrementAmount: 'some'}); };
+    var constrObject = function() { new streamBuffer.ReadableStreamBuffer({incrementAmount: {}}); };
+    var constrFunction = function() { new streamBuffer.ReadableStreamBuffer({incrementAmount: function() {}}); };
+    expect(constrFloat).to.throw(Error);
+    expect(constrString).to.throw(Error);
+    expect(constrObject).to.throw(Error);
+    expect(constrFunction).to.throw(Error);
+  });
+
+});
