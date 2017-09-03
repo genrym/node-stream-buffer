@@ -1,6 +1,4 @@
-Note: this repository was forked from the original, since the original seemed to be unreachable for pull requests.
-
-Note2: the library uses some ES6 features
+Note: the library uses some ES6 features
 
 # Node Stream Buffers
 
