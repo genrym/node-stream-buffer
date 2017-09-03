@@ -1,6 +1,6 @@
 Note: the library uses some ES6 features
 
-# Node Stream Buffers
+# Node Streamable Buffers
 
 [![Build Status][badge-travis-img]][badge-travis-url]
 [![Code Climate][badge-climate-img]][badge-climate-url]
