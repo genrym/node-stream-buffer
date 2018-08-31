@@ -18,7 +18,7 @@ npm install streamable-buffers --save
 To use the stream buffers in your module, simply import it and away you go.
 
 ```js
-var streamBuffers = require('streamable-buffers');
+const streamBuffers = require('streamable-buffers');
 ```
 
 ### WritableStreamBuffer
@@ -28,7 +28,7 @@ var streamBuffers = require('streamable-buffers');
 There is also a possibility to limit the maximum amount of bytes to be written to the buffer, by specifying the _limit_ option. If the limit is reached - an _Error_ will be thrown, and 'error' event will be emitted.
 
 ```js
-var myWritableStreamBuffer = new streamBuffers.WritableStreamBuffer({
+const myWritableStreamBuffer = new streamBuffers.WritableStreamBuffer({
 	initialSize: (100 * 1024),    // start at 100 kilobytes.
 	incrementAmount: (10 * 1024), // grow by 10 kilobytes each time buffer overflows.
 	limit: (1024 * 1024)          // maximum buffer size to write is 1 megabyte
@@ -92,7 +92,7 @@ myWritableStreamBuffer.getContentsAsString(); // -> 'ASDF'
 The frequency in which chunks are pumped out, and the size of the chunks themselves can be configured in the constructor. The initial size and increment amount of internal Buffer can be configured too. In the following example 2kb chunks will be output every 10 milliseconds:
 
 ```js
-var myReadableStreamBuffer = new streamBuffers.ReadableStreamBuffer({
+const myReadableStreamBuffer = new streamBuffers.ReadableStreamBuffer({
 	frequency: 10,   // in milliseconds.
 	chunkSize: 2048  // in bytes.
 });
