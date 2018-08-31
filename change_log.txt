@@ -1,5 +1,10 @@
 This file contains the changes by version since the fork
 ========================================================
+v3.3.2
+    - Cherry picked a fix for issue https://github.com/samcday/node-stream-buffer/issues/30 - ReadableStreamBuffer stalls if not used right away
+    - Updated some dev dependecies to newer versions
+v3.3.1
+    - Some documentation update
 v3.3.0
     - API change: WritableStreamBuffer now returns empty Buffer or empty String when calling getContents() or
       getContentsAsString() respectively. Old API was to return boolean false
